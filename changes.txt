@@ -1,2 +1,5 @@
+Dec 20, 2019
+  tuned up title of summary emails
+
 v. 1.0.1 Jun 6, 2019
   in sql queries replaced WM_CONCAT with LISTAGG
