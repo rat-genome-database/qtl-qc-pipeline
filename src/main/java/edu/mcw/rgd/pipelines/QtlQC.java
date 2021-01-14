@@ -1,0 +1,56 @@
+package edu.mcw.rgd.pipelines;
+
+import edu.mcw.rgd.process.Utils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.core.io.FileSystemResource;
+
+import java.util.*;
+
+/**
+ * Created by mtutaj on 1/14/2021
+ */
+public class QtlQC {
+
+    private String version;
+
+    Logger log = Logger.getRootLogger();
+
+    public static void main(String[] args) throws Exception {
+
+        DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+        new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new FileSystemResource("properties/AppConfigure.xml"));
+        QtlQC manager = (QtlQC) (bf.getBean("manager"));
+
+        try {
+            manager.run();
+        } catch(Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public void run() throws Exception {
+
+        long time0 = System.currentTimeMillis();
+
+        log.info(getVersion());
+
+        Dao dao = new Dao();
+
+        // run queries
+
+
+        String msg = "=== OK === elapsed "+ Utils.formatElapsedTime(time0, System.currentTimeMillis());
+        log.info(msg);
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+}
