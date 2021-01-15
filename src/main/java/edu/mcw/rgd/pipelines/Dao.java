@@ -2,6 +2,7 @@ package edu.mcw.rgd.pipelines;
 
 import edu.mcw.rgd.dao.AbstractDAO;
 import edu.mcw.rgd.dao.spring.StringListQuery;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -14,8 +15,34 @@ public class Dao {
 
     AbstractDAO adao = new AbstractDAO();
 
+    Logger logMultiCMO = Logger.getLogger("multi_cmo");
+    Logger logMultiVT = Logger.getLogger("multi_vt");
+
+    static final String HEADER = "RGD_ID\tQTL_SYMBOL\tCOUNT\tTERMS\tONTOLOGY_IDS";
+
+    public List<String> getMultipleCMOAnnotations() throws Exception {
+
+        String sql =
+                "SELECT q.rgd_id || CHR(9) || qtl_symbol || CHR(9) || COUNT(*) || CHR(9) ||"+
+                        "  LISTAGG(ot.term) WITHIN GROUP (ORDER BY ot.term) || CHR(9) ||"+
+                        "  LISTAGG(fa.term_acc) WITHIN GROUP (ORDER BY fa.term_acc) "+
+                        "FROM full_annot fa, qtls q, ont_terms ot "+
+                        "WHERE fa.ANNOTATED_OBJECT_RGD_ID = q.RGD_ID"+
+                        "  AND fa.TERM_ACC like 'CMO:%'"+
+                        "  AND fa.TERM_ACC = ot.TERM_ACC "+
+                        "GROUP BY q.rgd_id, qtl_symbol HAVING COUNT(*) > 1";
+
+        List<String> multis = StringListQuery.execute(adao, sql);
+        if( !multis.isEmpty() ) {
+            logMultiCMO.info(HEADER);
+            for( String line: multis ) {
+                logMultiCMO.info(line);
+            }
+        }
+        return multis;
+    }
+
     public List<String> getMultipleVTAnnotations() throws Exception {
-        String header = "RGD_ID\tQTL_SYMBOL\tCOUNT\tTERMS\tONTOLOGY_IDS\n";
 
         String sql =
         "SELECT q.rgd_id || CHR(9) || qtl_symbol || CHR(9) || COUNT(*) || CHR(9) ||"+
@@ -27,7 +54,14 @@ public class Dao {
         "  AND fa.TERM_ACC = ot.TERM_ACC "+
         "GROUP BY q.rgd_id, qtl_symbol HAVING COUNT(*) > 1";
 
-        return StringListQuery.execute(adao, sql);
+        List<String> multis = StringListQuery.execute(adao, sql);
+        if( !multis.isEmpty() ) {
+            logMultiVT.info(HEADER);
+            for( String line: multis ) {
+                logMultiVT.info(line);
+            }
+        }
+        return multis;
     }
 
 }

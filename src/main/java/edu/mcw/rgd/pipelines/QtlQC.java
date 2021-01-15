@@ -40,7 +40,11 @@ public class QtlQC {
         Dao dao = new Dao();
 
         // run queries
+        List<String> multipleCMOAnnots = dao.getMultipleCMOAnnotations();
+        log.info("QTLs with multiple CMO annotations: "+multipleCMOAnnots.size());
 
+        List<String> multipleVTAnnots = dao.getMultipleVTAnnotations();
+        log.info("QTLs with multiple VT annotations: "+multipleVTAnnots.size());
 
         String msg = "=== OK === elapsed "+ Utils.formatElapsedTime(time0, System.currentTimeMillis());
         log.info(msg);
