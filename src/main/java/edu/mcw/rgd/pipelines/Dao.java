@@ -2,7 +2,8 @@ package edu.mcw.rgd.pipelines;
 
 import edu.mcw.rgd.dao.AbstractDAO;
 import edu.mcw.rgd.dao.spring.StringListQuery;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class Dao {
 
     AbstractDAO adao = new AbstractDAO();
 
-    Logger logMultiCMO = Logger.getLogger("multi_cmo");
-    Logger logMultiVT = Logger.getLogger("multi_vt");
+    Logger logMultiCMO = LogManager.getLogger("multi_cmo");
+    Logger logMultiVT = LogManager.getLogger("multi_vt");
 
     static final String HEADER = "RGD_ID\tQTL_SYMBOL\tCOUNT\tTERMS\tONTOLOGY_IDS";
 
