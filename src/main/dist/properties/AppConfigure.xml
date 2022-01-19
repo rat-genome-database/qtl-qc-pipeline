@@ -2,6 +2,6 @@
 
 <beans>
     <bean id="manager" class="edu.mcw.rgd.pipelines.QtlQC" >
-        <property name="version" value="QtlQC Pipeline  -- build Jan 12, 2022" />
+        <property name="version" value="QtlQC Pipeline  -- build Jan 19, 2022" />
     </bean>
 </beans>
