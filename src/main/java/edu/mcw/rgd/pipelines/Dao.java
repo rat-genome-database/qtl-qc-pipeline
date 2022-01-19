@@ -35,9 +35,9 @@ public class Dao {
 
         List<String> multis = StringListQuery.execute(adao, sql);
         if( !multis.isEmpty() ) {
-            logMultiCMO.info(HEADER);
+            logMultiCMO.debug(HEADER);
             for( String line: multis ) {
-                logMultiCMO.info(line);
+                logMultiCMO.debug(line);
             }
         }
         return multis;
@@ -57,9 +57,9 @@ public class Dao {
 
         List<String> multis = StringListQuery.execute(adao, sql);
         if( !multis.isEmpty() ) {
-            logMultiVT.info(HEADER);
+            logMultiVT.debug(HEADER);
             for( String line: multis ) {
-                logMultiVT.info(line);
+                logMultiVT.debug(line);
             }
         }
         return multis;
