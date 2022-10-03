@@ -2,17 +2,17 @@
 <Configuration>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-hh HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
         <RollingFile name="detail" append="true" fileName="logs/detail.log" filePattern="logs/detail.log.%d{yyyy-MM}">
-            <PatternLayout pattern="%d{yyyy-MM-hh HH:mm:ss} %p [%c] - %m%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%c] - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/><!-- 1 month roll over -->
             </Policies>
         </RollingFile>
         <RollingFile name="status" append="true" fileName="logs/status.log" filePattern="logs/status.log.%d{yyyy-MM}">
-            <PatternLayout pattern="%d{yyyy-MM-hh HH:mm:ss} %p [%c] - %m%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%c] - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
             </Policies>
@@ -22,7 +22,7 @@
         </File>
 
         <RollingFile name="multi_vt" append="true" fileName="logs/QTLs_with_multiple_VT_annotations.log" filePattern="logs/QTLs_with_multiple_VT_annotations.log.%d{yyyy-MM}">
-            <PatternLayout pattern="%d{yyyy-MM-hh HH:mm:ss} %p [%c] - %m%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%c] - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
             </Policies>
@@ -32,7 +32,7 @@
         </File>
 
         <RollingFile name="multi_cmo" append="true" fileName="logs/QTLs_with_multiple_CMO_annotations.log" filePattern="logs/QTLs_with_multiple_CMO_annotations.log.%d{yyyy-MM}">
-            <PatternLayout pattern="%d{yyyy-MM-hh HH:mm:ss} %p [%c] - %m%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%c] - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
             </Policies>
