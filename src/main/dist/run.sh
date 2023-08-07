@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# shell script to run QtlQC Pipeline
+# shell script to run qtl-qc-pipeline
 . /etc/profile
 
-APPNAME=QtlQC
+APPNAME=qtl-qc-pipeline
 APPDIR=/home/rgddata/pipelines/$APPNAME
 SERVER=`hostname -s | tr '[a-z]' '[A-Z]'`
 EMAIL_LIST=mtutaj@mcw.edu
