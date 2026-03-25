@@ -1,5 +1,6 @@
 package edu.mcw.rgd.pipelines;
 
+import edu.mcw.rgd.process.MemoryMonitor;
 import edu.mcw.rgd.process.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +37,9 @@ public class QtlQC {
 
         long time0 = System.currentTimeMillis();
 
+        MemoryMonitor memoryMonitor = new MemoryMonitor();
+        memoryMonitor.start();
+
         log.info(getVersion());
 
         Dao dao = new Dao();
@@ -46,6 +50,9 @@ public class QtlQC {
 
         List<String> multipleVTAnnots = dao.getMultipleVTAnnotations();
         log.info("QTLs with multiple VT annotations: "+multipleVTAnnots.size());
+
+        memoryMonitor.stop();
+        log.info(memoryMonitor.getSummary());
 
         String msg = "=== OK === elapsed "+ Utils.formatElapsedTime(time0, System.currentTimeMillis());
         log.info(msg);
