@@ -1,3 +1,6 @@
+Mar 25, 2026
+  added MemoryMonitor; updated README; refactored SQL to text blocks; updated dependencies
+
 May 22, 2025
   renamed github branch 'master' to 'main'
 
