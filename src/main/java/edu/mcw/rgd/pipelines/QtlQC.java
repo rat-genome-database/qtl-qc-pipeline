@@ -46,10 +46,10 @@ public class QtlQC {
 
         // run queries
         List<String> multipleCMOAnnots = dao.getMultipleCMOAnnotations();
-        log.info("QTLs with multiple CMO annotations: "+multipleCMOAnnots.size());
+        log.info("QTLs with multiple CMO annotations: "+Utils.formatThousands(multipleCMOAnnots.size()));
 
         List<String> multipleVTAnnots = dao.getMultipleVTAnnotations();
-        log.info("QTLs with multiple VT annotations: "+multipleVTAnnots.size());
+        log.info("QTLs with multiple VT annotations: "+Utils.formatThousands(multipleVTAnnots.size()));
 
         memoryMonitor.stop();
         log.info(memoryMonitor.getSummary());

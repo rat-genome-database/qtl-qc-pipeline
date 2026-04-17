@@ -1,3 +1,6 @@
+Apr 17, 2026
+  format logged numbers with thousands separators; updated dependencies
+
 Mar 25, 2026
   added MemoryMonitor; updated README; refactored SQL to text blocks; updated dependencies
 
